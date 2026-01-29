@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mohammed Nihal TP - Personal Website</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-color: #0052cc;
+            --primary-dark: #003d99;
+            --accent-color: #0099ff;
+            --text-dark: #0d1117;
+            --text-light: #6e7681;
+            --text-muted: #8b949e;
+            --bg-light: #f6f8fb;
+            --border-color: #d0d7de;
+            --success-color: #1f6feb;
+            --shadow-sm: 0 3px 12px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.65;
+            letter-spacing: 0.3px;
+            color: var(--text-dark);
+            background: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+            padding: 14px 20px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.02);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+        .nav-links li a {
+            transition: color 0.2s ease, border-bottom 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            position: relative;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+        }
+        .nav-links li a:hover {
+            color: var(--primary-color);
+        }
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #000;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #001f3f 0%, #0052a3 50%, #0066cc 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 153, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%);
+            z-index: 0;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        #hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: move 20s linear infinite;
+            z-index: 1;
+            opacity: 0.5;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease-out;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+        }
+        .hero-content h1 {
+            font-size: 4.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.1s both;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+            animation: fadeInUp 1.1s ease-out 0.2s both;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+            font-weight: 300;
+            letter-spacing: 0.4px;
+            line-height: 1.7;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            padding: 15px 40px;
+            background: #fff;
+            color: #0066cc;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            border: 2px solid #fff;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .btn:hover {
+            background: #fff;
+            color: #0052a3;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        #hero .btn {
+            animation: fadeInUp 1.4s ease-out 0.4s both;
+        }
+        #hero .btn:hover {
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            box-shadow: 0 15px 50px rgba(255, 255, 255, 0.3);
+        }
+        #about .btn {
+            background: #0066cc;
+            color: #fff;
+            border-color: #0066cc;
+        }
+        #about .btn:hover {
+            background: #0052a3;
+            border-color: #0052a3;
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.3);
+        }
+
+        /* About Section */
+        #about {
+            background: var(--bg-light);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.2;
+        }
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.85;
+            margin-bottom: 25px;
+            letter-spacing: 0.3px;
+        }
+        .about-image {
+            display: flex;
+            justify-content: center;
+            perspective: 1200px;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-color), #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        .about-image img {
+            width: 95%;
+            height: 95%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Education Section */
+        #education {
+            background: #fff;
+        }
+        #education h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 60px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .education-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .education-item {
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.02), rgba(0, 168, 255, 0.02));
+            border-radius: 14px;
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .education-item h3 {
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.3px;
+        }
+        .education-item p {
+            color: var(--text-light);
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        /* Certifications Section */
+        #certifications {
+            background: var(--bg-light);
+        }
+        #certifications h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 60px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .certification-card {
+            padding: 35px;
+            background: #fff;
+            border-radius: 14px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .certification-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .certification-card:hover::before {
+            transform: scaleX(1);
+        }
+        .certification-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 50px rgba(0, 102, 204, 0.18);
+            border-color: var(--accent-color);
+        }
+        .certification-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.3px;
+        }
+        .certification-card p {
+            color: var(--text-light);
+            font-size: 0.98rem;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: #fff;
+        }
+        #skills h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 60px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .skill-card {
+            padding: 35px;
+            background: #fff;
+            border-radius: 14px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 50px rgba(0, 102, 204, 0.18);
+            border-color: var(--accent-color);
+        }
+        .skill-card h3 {
+            margin-bottom: 14px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.3px;
+        }
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.98rem;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--bg-light), #fff);
+        }
+        .contact-info {
+            text-align: center;
+        }
+        .contact-info h2 {
+            margin-bottom: 40px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.2;
+        }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 28px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: #fff;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
+            border: none;
+            box-shadow: var(--shadow-md);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        .contact-links a i {
+            font-size: 1.1rem;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .contact-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        .contact-links a:hover::before {
+            left: 0;
+        }
+        .contact-links a:hover i {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--text-dark), #1a2847);
+            color: #fff;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.3px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes move {
+            0% {
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Easter Egg: Floating Dancing Logo */
+        .easter-egg-logo {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 3rem;
+            z-index: 999;
+            cursor: pointer;
+            animation: float-dance 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(0, 102, 204, 0.5));
+        }
+        @keyframes float-dance {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-15px) rotate(10deg) scale(1.1); }
+            50% { transform: translateY(-30px) rotate(-5deg) scale(1); }
+            75% { transform: translateY(-15px) rotate(8deg) scale(1.1); }
+        }
+        .easter-egg-text {
+            position: fixed;
+            bottom: 140px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 999;
+            animation: fadeInUp 0.6s ease-out;
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+        }
+        .easter-egg-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.4s ease-out;
+        }
+        .easter-egg-modal-content {
+            background: #fff;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .easter-egg-modal-content h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .easter-egg-modal-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.8) rotate(-5deg); opacity: 0; }
+            to { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .hero-content p {
+                font-size: 0.95rem;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 65px;
+                flex-direction: column;
+                background-color: rgba(255, 255, 255, 0.99);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                gap: 15px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .contact-links {
+                flex-direction: row;
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .contact-links a {
+                width: auto;
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+            .contact-links a span {
+                flex: 0;
+            }
+            .contact-info h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            .easter-egg-logo {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            .easter-egg-text {
+                bottom: 90px;
+                right: 20px;
+                font-size: 0.8rem;
+                padding: 10px 16px;
+            }
+            .hero-badge {
+                font-size: 0.75rem;
+            }
+            .btn {
+                padding: 12px 28px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Mohammed Nihal TP</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✨ AI Tools Expert & Data Analysis Specialist</div>
+            <h1>Mohammed Nihal TP</h1>
+            <p class="hero-subtitle">Transforming Business With Intelligent Automation</p>
+            <p>Highly driven AI Tools Expert specializing in Prompt Engineering, Python-based Data Analysis, and Cloud Automation. Proven technical background in hardware and communication systems troubleshooting, with a history of significantly contributing to IT infrastructure projects and ensuring maximum system uptime.</p>
+            <a href="#about" class="btn">More Info</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>ABOUT ME</h2>
+                <p>Highly driven AI Tools Expert specializing in Prompt Engineering, Python-based Data Analysis, and Cloud Automation. Proven technical background in hardware and communication systems troubleshooting, with a history of significantly contributing to IT infrastructure projects and ensuring maximum system uptime.</p>
+            </div>
+            <div class="about-image">
+                <div class="image-container">
+                    <img src="photo.jpg" alt="Mohammed Nihal TP" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 style="text-align: center; margin-bottom: 40px;">EDUCATION</h2>
+        <div class="education-list">
+            <div class="education-item">
+                <h3>DIPLOMA IN COMPUTER ENGINEERING</h3>
+                <p>SEETHI SAHIB MEMORIAL POLYTECHNIC | 2021-2024</p>
+            </div>
+            <div class="education-item">
+                <h3>SSLC</h3>
+                <p>PPTMY HIGHER SECONDARY SCHOOL | 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2 style="text-align: center; margin-bottom: 40px;">CERTIFICATIONS</h2>
+        <div class="certifications-grid">
+            <div class="certification-card">
+                <h3>Prompt Engineering</h3>
+                <p>IBM Cognitive Class</p>
+            </div>
+            <div class="certification-card">
+                <h3>Data Science using Python</h3>
+                <p>IBM Cognitive Class</p>
+            </div>
+            <div class="certification-card">
+                <h3>Data Analysis with Python</h3>
+                <p>IBM Cognitive Class</p>
+            </div>
+            <div class="certification-card">
+                <h3>Cloud Computing</h3>
+                <p>IBM Cognitive Class</p>
+            </div>
+            <div class="certification-card">
+                <h3>AI Tools Workshop</h3>
+                <p>Be10x</p>
+            </div>
+            <div class="certification-card">
+                <h3>Cyber Security Assessment</h3>
+                <p>LearnTube</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 style="text-align: center; margin-bottom: 40px;">SKILLS</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Prompt Engineering & Automation</h3>
+                <p>Expertise in creating and optimizing prompts for AI tools.</p>
+            </div>
+            <div class="skill-card">
+                <h3>AI Tools</h3>
+                <p>Proficient with ChatGPT, Gemini, Claude, Perplexity, and more.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Cloud Computing</h3>
+                <p>Experience with IBM Cloud and Google Cloud.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Cybersecurity Awareness</h3>
+                <p>Knowledge in security best practices and assessments.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Adaptive to Fast-paced Environments</h3>
+                <p>Thrives in dynamic technological settings.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Python Programming & Data Analysis</h3>
+                <p>Skilled in Python for data manipulation and analysis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-info">
+            <h2>GET IN TOUCH</h2>
+            <div class="contact-links">
+                <a href="http://www.linkedin.com/in/mohammed-nihal-tp-81436625a" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="tel:+917994799733">
+                    <i class="fas fa-phone"></i>
+                    <span>Phone</span>
+                </a>
+                <a href="mailto:nihalibnusajid@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mohammed Nihal TP. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Easter Egg: Scroll to Bottom Trigger
+        let easterEggTriggered = false;
+
+        window.addEventListener('scroll', () => {
+            if (!easterEggTriggered && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                easterEggTriggered = true;
+                
+                // Create text message
+                const easterText = document.createElement('div');
+                easterText.className = 'easter-egg-text';
+                easterText.textContent = "You scrolled all the way! Here's a treat 🎁";
+                document.body.appendChild(easterText);
+                
+                // Create floating logo
+                const easterLogo = document.createElement('div');
+                easterLogo.className = 'easter-egg-logo';
+                easterLogo.innerHTML = '<img src="logo.png" alt="Logo" style="width: 60px; height: 60px; object-fit: contain;">';
+                document.body.appendChild(easterLogo);
+                
+                // Remove on click and show modal
+                easterLogo.addEventListener('click', () => {
+                    easterLogo.remove();
+                    easterText.remove();
+                    
+                    // Create modal overlay
+                    const modal = document.createElement('div');
+                    modal.className = 'easter-egg-modal';
+                    modal.innerHTML = `
+                        <div class="easter-egg-modal-content">
+                            <h2>🎊 Congratulations! 🎊</h2>
+                            <p>You found the easter egg!</p>
+                            <p style="font-size: 0.95rem; color: var(--text-light);"><strong>FUN FACT:</strong> This website is created with AI using just prompts.</p>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">Thanks for exploring! 🌟</p>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                    
+                    // Remove modal after 3 seconds
+                    setTimeout(() => {
+                        modal.style.animation = 'fadeOut 0.4s ease-out';
+                        setTimeout(() => modal.remove(), 400);
+                    }, 3000);
+                });
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.education-item, .certification-card, .skill-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Header background on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
